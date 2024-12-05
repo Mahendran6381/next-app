@@ -1,0 +1,26 @@
+/* Set the default body background color and text color */
+body {
+    background-color: #f5f5f5;  /* Light background color */
+    color: #333333;  /* Dark text color for good contrast */
+    font-family: Arial, sans-serif;  /* Font for the body */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style for buttons */
+  button {
+    background-color: #4CAF50;  /* Green background for buttons */
+    color: white;  /* White text color for buttons */
+    border: none;  /* Remove default border */
+    padding: 10px 20px;  /* Padding inside the button */
+    text-align: center;  /* Center-align text */
+    text-decoration: none;  /* Remove underline */
+    display: inline-block;
+    font-size: 16px;  /* Button text size */
+    cursor: pointer;  /* Pointer cursor on hover */
+    border-radius: 5px;  /* Rounded corners for buttons */
+    transition: background-color 0.3s ease;  /* Smooth transition effect */
+  }
+  
+  
+  
