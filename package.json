@@ -2,6 +2,7 @@
   "name": "sitemanager-next-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,12 +11,16 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
+    "@prisma/client": "^6.0.1",
     "antd": "^5.22.3",
     "formik": "^2.4.6",
     "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "yup": "^1.5.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.mjs"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -24,7 +29,9 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
+    "prisma": "^6.0.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }

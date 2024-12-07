@@ -11,6 +11,7 @@ import {
   Col,
   Row,
 } from "antd";
+import createCustomer from "@/app/customer/actions";
 
 const { Option } = Select;
 
@@ -49,6 +50,7 @@ export default function CustomerForm(){
         }),
         onSubmit: values => {
           console.log(values);
+          console.log(createCustomer(values))
         },
       });
 
