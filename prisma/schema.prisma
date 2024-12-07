@@ -19,23 +19,20 @@ model User {
     name      String?
     password  String
     role      UserRole @default(GUEST)
-    customers Customer[]
 }
 
 model Customer {
      id               Int     @id @default(autoincrement())
      name             String
-     alternateMobile  Int
+     alternateMobile  String?
      country          String
      state            String
-     mobile           Int
+     mobile           String
      city             String
      address          String
      pincode          String
      gstnum           String?
-     createdBy        User    @relation(fields: [createdByUserId], references: [id] )
-     createdByUserId  Int
-}
+     }
 
 
 enum UserRole {

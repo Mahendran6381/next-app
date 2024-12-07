@@ -1,5 +1,5 @@
 'use server'
-import prisma from "../../../lib/prisma"
+import prisma from "../../../../lib/prisma";
 
 export default async function createCustomer(customer: any) {
     if (!customer || Object.keys(customer).length === 0) {

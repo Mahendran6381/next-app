@@ -1,63 +1,57 @@
-'use client'
-import { useFormik  } from "formik";
-import * as Yup from 'yup'
+'use client';
+
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import React from "react";
-import {
-  Button,
-  Form,
-  Input,
-  Select,
-  Space,
-  Col,
-  Row,
-} from "antd";
-import createCustomer from "@/app/customer/actions";
+import { Button, Form, Input, Select, Space, Col, Row } from "antd";
 
 const { Option } = Select;
 
-export default function CustomerForm(){
-    const formik = useFormik({
-        initialValues: {
-          name: '',
-          alternatemobile: '',
-          country:'',
-          state:'',
-          mobile:'',
-          city:'',
-          address:'',
-          pincode:'',
-          gstnum:'',
-        },
-        validationSchema: Yup.object().shape({
-          name: Yup.string()
-            .min(3, 'name must be at least 3 characters long')
-            .required('Required'),
-            alternatemobile : Yup.number().required("Required"),  
-            mobile : Yup.number().required("Required"),  
-            city: Yup.string()
-            .required('Required'),
-            state: Yup.string()
-            .required('Required'),
-            country: Yup.string()
-            .required('Required'),
-            address: Yup.string()
-            .required('Required'),
-            pincode: Yup.string()
-            .required('Required'),
-            gstnum: Yup.string().optional(),
+interface Customer {
+  name: string;
+  alternateMobile: string;
+  country: string;
+  state: string;
+  mobile: string;
+  city: string;
+  address: string;
+  pincode: string;
+  gstnum: string;
+}
 
-          
-        }),
-        onSubmit: values => {
-          console.log(values);
-          console.log(createCustomer(values))
-        },
-      });
+interface CustomerPropValue {
+  initialCutsomerValue: Customer;
+  onSubmit: (value: Customer) => object;
+}
 
-      return (
-        <Form
+export default function CustomerForm({
+  initialCutsomerValue,
+  onSubmit,
+}: CustomerPropValue) {
+  const formik = useFormik({
+    initialValues: initialCutsomerValue,
+    validationSchema: Yup.object().shape({
+      name: Yup.string()
+        .min(3, "Name must be at least 3 characters long")
+        .required("Required"),
+      alternateMobile: Yup.string().required("Required"),
+      mobile: Yup.string().required("Required"),
+      city: Yup.string().required("Required"),
+      state: Yup.string().required("Required"),
+      country: Yup.string().required("Required"),
+      address: Yup.string().required("Required"),
+      pincode: Yup.string().required("Required"),
+      gstnum: Yup.string().optional(),
+    }),
+    onSubmit: async (values) => {
+      onSubmit(values);
+    },
+  });
+
+  return (
+    <Form
       name="complex-form"
-      onFinish={formik.handleSubmit} 
+      onFinish={formik.handleSubmit}
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 8 }}
       style={{ maxWidth: "100%" }}
@@ -68,12 +62,12 @@ export default function CustomerForm(){
             <div>
               <label htmlFor="name">Name</label>
               <Input
-                id="Name"
+                id="name"
                 name="name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
                 placeholder="Please input"
-                status={formik.errors.name && formik.touched.name ? "error" : ""}
+                status={formik.errors.name && formik.touched.name ? "error" : undefined}
               />
               {formik.errors.name && formik.touched.name && (
                 <div style={{ color: "red" }}>{formik.errors.name}</div>
@@ -81,21 +75,22 @@ export default function CustomerForm(){
             </div>
 
             <div>
-              <label htmlFor="alternatemobile">Alternate Mobile</label>
+              <label htmlFor="alternateMobile">Alternate Mobile</label>
               <Input
-                id="alternatemobile"
-                name="alternatemobile"
+                id="alternateMobile"
+                name="alternateMobile"
+                type="text"
                 onChange={formik.handleChange}
-                value={formik.values.alternatemobile}
+                value={formik.values.alternateMobile}
                 placeholder="Please input"
                 status={
-                  formik.errors.alternatemobile && formik.touched.alternatemobile
+                  formik.errors.alternateMobile && formik.touched.alternateMobile
                     ? "error"
-                    : ""
+                    : undefined
                 }
               />
-              {formik.errors.alternatemobile && formik.touched.alternatemobile && (
-                <div style={{ color: "red" }}>{formik.errors.alternatemobile}</div>
+              {formik.errors.alternateMobile && formik.touched.alternateMobile && (
+                <div style={{ color: "red" }}>{formik.errors.alternateMobile}</div>
               )}
             </div>
 
@@ -106,7 +101,7 @@ export default function CustomerForm(){
                 onChange={(value) => formik.setFieldValue("country", value)}
                 value={formik.values.country}
                 placeholder="Select Country"
-                status={formik.errors.country && formik.touched.country ? "error" : ""}
+                status={formik.errors.country && formik.touched.country ? "error" : undefined}
               >
                 <Option value="India">India</Option>
                 <Option value="USA">USA</Option>
@@ -120,12 +115,12 @@ export default function CustomerForm(){
             <div>
               <label htmlFor="city">City</label>
               <Input
-                id="City"
+                id="city"
                 name="city"
                 onChange={formik.handleChange}
                 value={formik.values.city}
                 placeholder="Please input"
-                status={formik.errors.city && formik.touched.city ? "error" : ""}
+                status={formik.errors.city && formik.touched.city ? "error" : undefined}
               />
               {formik.errors.city && formik.touched.city && (
                 <div style={{ color: "red" }}>{formik.errors.city}</div>
@@ -140,7 +135,7 @@ export default function CustomerForm(){
                 onChange={formik.handleChange}
                 value={formik.values.pincode}
                 placeholder="Please input"
-                status={formik.errors.pincode && formik.touched.pincode ? "error" : ""}
+                status={formik.errors.pincode && formik.touched.pincode ? "error" : undefined}
               />
               {formik.errors.pincode && formik.touched.pincode && (
                 <div style={{ color: "red" }}>{formik.errors.pincode}</div>
@@ -156,10 +151,11 @@ export default function CustomerForm(){
               <Input
                 id="mobile"
                 name="mobile"
+                type="text"
                 onChange={formik.handleChange}
                 value={formik.values.mobile}
                 placeholder="Please input"
-                status={formik.errors.mobile && formik.touched.mobile ? "error" : ""}
+                status={formik.errors.mobile && formik.touched.mobile ? "error" : undefined}
               />
               {formik.errors.mobile && formik.touched.mobile && (
                 <div style={{ color: "red" }}>{formik.errors.mobile}</div>
@@ -174,7 +170,7 @@ export default function CustomerForm(){
                 onChange={formik.handleChange}
                 value={formik.values.gstnum}
                 placeholder="Please input"
-                status={formik.errors.gstnum && formik.touched.gstnum ? "error" : ""}
+                status={formik.errors.gstnum && formik.touched.gstnum ? "error" : undefined}
               />
               {formik.errors.gstnum && formik.touched.gstnum && (
                 <div style={{ color: "red" }}>{formik.errors.gstnum}</div>
@@ -188,7 +184,7 @@ export default function CustomerForm(){
                 onChange={(value) => formik.setFieldValue("state", value)}
                 value={formik.values.state}
                 placeholder="Select State"
-                status={formik.errors.state && formik.touched.state ? "error" : ""}
+                status={formik.errors.state && formik.touched.state ? "error" : undefined}
               >
                 <Option value="Tamil Nadu">Tamil Nadu</Option>
                 <Option value="California">California</Option>
@@ -219,6 +215,5 @@ export default function CustomerForm(){
         </Col>
       </Row>
     </Form>
-         )
-
+  );
 }
