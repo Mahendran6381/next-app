@@ -44,7 +44,7 @@ export default function CustomerForm({
       gstnum: Yup.string().optional(),
     }),
     onSubmit: async (values) => {
-      onSubmit(values);
+      await onSubmit(values);
     },
   });
 

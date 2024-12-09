@@ -7,7 +7,6 @@ export default async function createCustomer(customer: any) {
     }
 
     try {
-
         await prisma.customer.create({
             data: customer
         });

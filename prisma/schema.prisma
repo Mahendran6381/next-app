@@ -24,14 +24,14 @@ model User {
 model Customer {
      id               Int     @id @default(autoincrement())
      name             String
-     alternateMobile  String?
+     alternateMobile  String  @default("")
      country          String
      state            String
      mobile           String
      city             String
      address          String
      pincode          String
-     gstnum           String?
+     gstnum           String  @default("")
      }
 
 
