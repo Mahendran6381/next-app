@@ -1,4 +1,4 @@
-import { error } from "console";
+'use server'
 import prisma from "../../../../../lib/prisma"
 
 interface Customer {
@@ -34,26 +34,26 @@ export async function getCustomerById(id: number): Promise<getCustomerResponse>{
         console.log(error)
         return { success: false, message: String(error), data:{ name: "", alternateMobile: "" ,country: "", state: "" ,mobile: "" ,city: "" ,address: "" ,pincode: "", gstnum: "" }}
     }finally{
-        prisma.$disconnect;
+        prisma.$disconnect();
         
     }
 }
 
 export async function updateCustomer(values: Customer, id: number): Promise<updateCustomerResponse>{
-    try{
-          console.log("im gonna update")
-          await prisma.customer.update({
-            where:{
-                id: id
+    try {
+        console.log("I'm gonna update");
+        await prisma.customer.update({
+            where: {
+                id: Number(id),
             },
-            data: values
-        })
-        return {success:true, message: 'customer updated'}
-    }catch(error){
-        return { success: false, message: String(error)}
-    }finally{
-        prisma.$disconnect;
-        
+            data: values,
+        });
+        console.log("I did update");
+        return { success: true, message: "Customer updated" };
+    } catch (error) {
+        return { success: false, message: String(error) };
+    } finally {
+        await prisma.$disconnect(); 
     }
 }
 

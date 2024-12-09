@@ -1,7 +1,7 @@
 'use client'
 import CustomerForm from "@/forms/customer-forms"
 import React from 'react'
-import createCustomer from "../actions"
+import createCustomer from "./actions"
 
 interface Customer {
     name: string,

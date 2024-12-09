@@ -1,16 +1,14 @@
 'use server'
 import prisma from "../../../lib/prisma"
 
-export default async function createCustomer(customer: any) {
-    if (!customer || Object.keys(customer).length === 0) {
-        return { success: false, message: "data invalid" }
-    }
-
+export default async function getAllCustomer(start: number, limit: number) {
+  
     try {
-        await prisma.customer.create({
-            data: customer
-        });
-        return { success: true, message: "customer created" }
+        const customers = await prisma.customer.findMany({
+            skip:start,
+            take:limit
+        })
+        return { success: true, list:customers }
 
     }
     catch (error) {
