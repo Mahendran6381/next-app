@@ -29,8 +29,7 @@ export default function addCustomer(){
   
    }
    const addCustomer = async (values: Customer) =>{
-console.log(  await createCustomer(values)
-)
+         await createCustomer(values)
 }
    return <CustomerForm initialCutsomerValue={initialCutsomerValue} onSubmit={addCustomer} />
 }

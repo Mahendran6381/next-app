@@ -13,8 +13,10 @@
     "@ant-design/icons": "^5.5.2",
     "@prisma/client": "^6.0.1",
     "antd": "^5.22.3",
+    "bcrypt": "^5.1.1",
     "formik": "^2.4.6",
     "next": "15.0.3",
+    "next-auth": "^4.24.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yup": "^1.5.0"
@@ -23,6 +25,7 @@
     "seed": "ts-node prisma/seed.mjs"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

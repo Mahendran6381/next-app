@@ -5,9 +5,7 @@ export default async function createCustomer(customer: any) {
     if (!customer || Object.keys(customer).length === 0) {
         return { success: false, message: "data invalid" }
     }
-
     try {
-
         await prisma.customer.create({
             data: customer
         });
